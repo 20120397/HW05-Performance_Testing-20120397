@@ -34,6 +34,7 @@
 - **Nguyên nhân gốc rễ:** Cơ chế ghi tuần tự mặc định (`DELETE` journal mode) của `sqlite3` kết hợp hàng đợi event loop đơn luồng của Express gây tắc nghẽn khi nhiều thao tác `POST/PUT/DELETE` chạy song song kéo dài.
 - **Minh chứng đính kèm:**
   ![Stress Resource Chart](../evidence/chart-stress-resources.png)
+  ![Stress JMeter and Task Manager](../evidence/stress.png)
 
 ---
 
@@ -47,6 +48,7 @@
 - **Nguyên nhân gốc rễ:** Node.js xử lý Express routing, `jwt.sign`/`jwt.verify` và callback `sqlite3` trên một luồng JavaScript chính duy nhất, không tận dụng được đa nhân CPU khi traffic tăng vọt đột ngột.
 - **Minh chứng đính kèm:**
   ![Spike Resource Chart](../evidence/chart-spike-resources.png)
+  ![Spike JMeter and Task Manager](../evidence/Spike.png)
 
 ---
 
@@ -64,6 +66,8 @@
   - Lần 2 nhập sai mật khẩu: HTTP `401` (`newAttempts = 4 >= 3`, ghi `locked_until` +3 phút).
   - Lần 3 nhập **ĐÚNG** mật khẩu `Admin123!`: HTTP **`403 Forbidden`** — `{"error":"Tài khoản đã bị khóa. Vui lòng thử lại sau."}`.
 - **Tác động tới Performance Testing:** Nếu bộ test có tỷ lệ sai mật khẩu hoặc thiếu bước reset DB/khởi động lại server giữa các lượt chạy, toàn bộ Virtual Users dùng chung tài khoản đó sẽ bị khóa hàng loạt với lỗi `403`.
+- **Minh chứng đính kèm:**
+  ![BUG-AUTH-01 Evidence](../evidence/bug-auth-01-lockout.png)
 
 ---
 
@@ -74,6 +78,8 @@
   - Gửi `POST /api/products` **không có header `Authorization`**: Server trả về **`200 OK`** `{"message":"Product created","id":6}`.
   - Gửi `DELETE /api/products/6` **không có header `Authorization`**: Server trả về **`200 OK`** `{"message":"Product deleted"}`.
 - **Hệ quả kiểm thử hiệu năng:** Trong JMeter test plan, nếu không gắn Assertion kiểm tra kỹ token hoặc tách luồng test bảo mật, bài test vẫn pass `200 OK` dù lỡ truyền token rỗng!
+- **Minh chứng đính kèm:**
+  ![BUG-SEC-01 Evidence](../evidence/bug-sec-01-unauth-product-cud.png)
 
 ---
 
@@ -83,6 +89,8 @@
 - **Kết quả thực nghiệm (`evidence/functional-and-lockout-verification.json`):**
   - Đăng nhập bằng tài khoản khách hàng thường `test@eshop.com` (`role: "user"`), sau đó gọi `GET /api/admin/users` và `GET /api/admin/orders`.
   - Server trả về **`200 OK`** và xuất toàn bộ danh sách `11` tài khoản người dùng cùng toàn bộ đơn hàng của hệ thống.
+- **Minh chứng đính kèm:**
+  ![BUG-SEC-02 Evidence](../evidence/bug-sec-02-broken-rbac.png)
 
 ---
 
@@ -93,3 +101,5 @@
   - Gửi `PUT /api/products/999999` -> nhận **`200 OK`** `{"message":"Product updated"}`.
   - Gửi `DELETE /api/products/999999` -> nhận **`200 OK`** `{"message":"Product deleted"}`.
 - **Hệ quả:** Trong kiểm thử hiệu năng JMeter, nếu bước `POST /api/products` trích xuất `created_product_id` thất bại và rơi về default `0`, hai bước `PUT` và `DELETE` vẫn trả `200 OK` gây sai lệch giả tạo (`false green`) nếu không kiểm tra thêm tại bước `POST`.
+- **Minh chứng đính kèm:**
+  ![BUG-FUNC-01 Evidence](../evidence/bug-func-01-silent-200.png)
