@@ -1,0 +1,74 @@
+{
+  "timestamp": "2026-11-22T14:45:05.222Z",
+  "checks": {
+    "lockout_behavior": {
+      "fail1": {
+        "status": 401,
+        "json": {
+          "error": "Invalid email or password"
+        },
+        "text": "{\"error\":\"Invalid email or password\"}"
+      },
+      "fail2": {
+        "status": 401,
+        "json": {
+          "error": "Invalid email or password"
+        },
+        "text": "{\"error\":\"Invalid email or password\"}"
+      },
+      "attempt3_with_valid_password": {
+        "status": 403,
+        "json": {
+          "error": "Tài khoản đã bị khóa. Vui lòng thử lại sau."
+        },
+        "text": "{\"error\":\"Tài khoản đã bị khóa. Vui lòng thử lại sau.\"}"
+      }
+    },
+    "unauthenticated_product_cud": {
+      "unauthCreate": {
+        "status": 200,
+        "json": {
+          "message": "Product created",
+          "id": 6
+        },
+        "text": "{\"message\":\"Product created\",\"id\":6}"
+      },
+      "unauthDelete": {
+        "status": 200,
+        "json": {
+          "message": "Product deleted"
+        },
+        "text": "{\"message\":\"Product deleted\"}"
+      }
+    },
+    "broken_admin_access_control": {
+      "user_role": "user",
+      "admin_users_status": 200,
+      "admin_users_count": 11,
+      "admin_orders_status": 200
+    },
+    "silent_missing_id_mutation": {
+      "putMissing": {
+        "status": 200,
+        "json": {
+          "message": "Product updated"
+        },
+        "text": "{\"message\":\"Product updated\"}"
+      },
+      "deleteMissing": {
+        "status": 200,
+        "json": {
+          "message": "Product deleted"
+        },
+        "text": "{\"message\":\"Product deleted\"}"
+      }
+    },
+    "parallel_write_probe": {
+      "total": 25,
+      "status_counts": {
+        "200": 25
+      },
+      "sample_errors": []
+    }
+  }
+}

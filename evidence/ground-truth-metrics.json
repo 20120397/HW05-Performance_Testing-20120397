@@ -1,0 +1,1010 @@
+{
+  "load": {
+    "jtl": {
+      "file": "D:\\KTPM\\HW05\\20120397\\results\\load\\20120397_Load_20261122.jtl",
+      "overall": {
+        "samples": 4371,
+        "errors": 0,
+        "errorPct": 0,
+        "durationSec": 119.13,
+        "throughputRps": 36.69,
+        "avgMs": 2.99,
+        "minMs": 1,
+        "p50Ms": 3,
+        "p90Ms": 5,
+        "p95Ms": 6,
+        "p99Ms": 9,
+        "maxMs": 52,
+        "avgBytes": 726.1,
+        "responseCodes": {
+          "200": 4371
+        },
+        "topErrors": [],
+        "peakActiveThreads": 20
+      },
+      "perEndpoint": {
+        "01_POST_Admin_Login": {
+          "samples": 634,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 119.09,
+          "throughputRps": 5.32,
+          "avgMs": 2.28,
+          "minMs": 1,
+          "p50Ms": 2,
+          "p90Ms": 3,
+          "p95Ms": 4,
+          "p99Ms": 7,
+          "maxMs": 52,
+          "avgBytes": 674.6,
+          "responseCodes": {
+            "200": 634
+          },
+          "topErrors": []
+        },
+        "02_GET_Admin_Orders": {
+          "samples": 630,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 118.49,
+          "throughputRps": 5.32,
+          "avgMs": 2,
+          "minMs": 1,
+          "p50Ms": 2,
+          "p90Ms": 3,
+          "p95Ms": 4,
+          "p99Ms": 7,
+          "maxMs": 9,
+          "avgBytes": 1133,
+          "responseCodes": {
+            "200": 630
+          },
+          "topErrors": []
+        },
+        "03_GET_Admin_Users": {
+          "samples": 626,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 117.68,
+          "throughputRps": 5.32,
+          "avgMs": 1.98,
+          "minMs": 1,
+          "p50Ms": 2,
+          "p90Ms": 3,
+          "p95Ms": 3,
+          "p99Ms": 6,
+          "maxMs": 13,
+          "avgBytes": 2003,
+          "responseCodes": {
+            "200": 626
+          },
+          "topErrors": []
+        },
+        "04_GET_Categories": {
+          "samples": 624,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 117.12,
+          "throughputRps": 5.33,
+          "avgMs": 1.62,
+          "minMs": 1,
+          "p50Ms": 1,
+          "p90Ms": 2,
+          "p95Ms": 3,
+          "p99Ms": 5,
+          "maxMs": 7,
+          "avgBytes": 358,
+          "responseCodes": {
+            "200": 624
+          },
+          "topErrors": []
+        },
+        "05_POST_Create_Product": {
+          "samples": 622,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 116.96,
+          "throughputRps": 5.32,
+          "avgMs": 4.39,
+          "minMs": 3,
+          "p50Ms": 4,
+          "p90Ms": 5.9,
+          "p95Ms": 7,
+          "p99Ms": 10,
+          "maxMs": 23,
+          "avgBytes": 304.8,
+          "responseCodes": {
+            "200": 622
+          },
+          "topErrors": []
+        },
+        "06_PUT_Update_Product": {
+          "samples": 618,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 116.67,
+          "throughputRps": 5.3,
+          "avgMs": 4.34,
+          "minMs": 3,
+          "p50Ms": 4,
+          "p90Ms": 6,
+          "p95Ms": 7,
+          "p99Ms": 10,
+          "maxMs": 13,
+          "avgBytes": 296,
+          "responseCodes": {
+            "200": 618
+          },
+          "topErrors": []
+        },
+        "07_DELETE_Delete_Product": {
+          "samples": 617,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 116.15,
+          "throughputRps": 5.31,
+          "avgMs": 4.37,
+          "minMs": 2,
+          "p50Ms": 4,
+          "p90Ms": 6,
+          "p95Ms": 7,
+          "p99Ms": 10,
+          "maxMs": 11,
+          "avgBytes": 296,
+          "responseCodes": {
+            "200": 617
+          },
+          "topErrors": []
+        }
+      },
+      "timeWindows30s": [
+        {
+          "windowSec": "0-30s",
+          "samples": 838,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 27.93,
+          "avgMs": 3.36,
+          "p95Ms": 7,
+          "maxMs": 52
+        },
+        {
+          "windowSec": "30-60s",
+          "samples": 1201,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 40.03,
+          "avgMs": 2.99,
+          "p95Ms": 6,
+          "maxMs": 13
+        },
+        {
+          "windowSec": "60-90s",
+          "samples": 1186,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 39.53,
+          "avgMs": 3.1,
+          "p95Ms": 6,
+          "maxMs": 11
+        },
+        {
+          "windowSec": "90-120s",
+          "samples": 1146,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 38.2,
+          "avgMs": 2.6,
+          "p95Ms": 5,
+          "maxMs": 11
+        }
+      ]
+    },
+    "resources": {
+      "samples": 64,
+      "durationSec": 128.8,
+      "cpu1CoreAvgPct": 6.71,
+      "cpu1CoreMaxPct": 13.25,
+      "cpuAllCoresAvgPct": 0.42,
+      "cpuAllCoresMaxPct": 0.83,
+      "workingSetStartMb": 56.98,
+      "workingSetEndMb": 86.96,
+      "workingSetMinMb": 51.08,
+      "workingSetMaxMb": 86.96,
+      "privateMemMaxMb": 101.52,
+      "maxThreads": 16,
+      "maxHandles": 234
+    }
+  },
+  "stress": {
+    "jtl": {
+      "file": "D:\\KTPM\\HW05\\20120397\\results\\stress\\20120397_Stress_20261122.jtl",
+      "overall": {
+        "samples": 37719,
+        "errors": 0,
+        "errorPct": 0,
+        "durationSec": 119.63,
+        "throughputRps": 315.3,
+        "avgMs": 35.7,
+        "minMs": 0,
+        "p50Ms": 7,
+        "p90Ms": 133,
+        "p95Ms": 176,
+        "p99Ms": 237,
+        "maxMs": 330,
+        "avgBytes": 725.5,
+        "responseCodes": {
+          "200": 37719
+        },
+        "topErrors": [],
+        "peakActiveThreads": 100
+      },
+      "perEndpoint": {
+        "01_POST_Admin_Login": {
+          "samples": 5430,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 119.62,
+          "throughputRps": 45.4,
+          "avgMs": 35.11,
+          "minMs": 0,
+          "p50Ms": 6,
+          "p90Ms": 135,
+          "p95Ms": 176,
+          "p99Ms": 239.71,
+          "maxMs": 330,
+          "avgBytes": 674.6,
+          "responseCodes": {
+            "200": 5430
+          },
+          "topErrors": []
+        },
+        "02_GET_Admin_Orders": {
+          "samples": 5413,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 119.22,
+          "throughputRps": 45.4,
+          "avgMs": 33.31,
+          "minMs": 0,
+          "p50Ms": 6,
+          "p90Ms": 127,
+          "p95Ms": 167,
+          "p99Ms": 230.88,
+          "maxMs": 314,
+          "avgBytes": 1133,
+          "responseCodes": {
+            "200": 5413
+          },
+          "topErrors": []
+        },
+        "03_GET_Admin_Users": {
+          "samples": 5405,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 119.07,
+          "throughputRps": 45.39,
+          "avgMs": 32.95,
+          "minMs": 0,
+          "p50Ms": 6,
+          "p90Ms": 123,
+          "p95Ms": 160,
+          "p99Ms": 226.96,
+          "maxMs": 318,
+          "avgBytes": 2003,
+          "responseCodes": {
+            "200": 5405
+          },
+          "topErrors": []
+        },
+        "04_GET_Categories": {
+          "samples": 5390,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 118.7,
+          "throughputRps": 45.41,
+          "avgMs": 32.9,
+          "minMs": 0,
+          "p50Ms": 6,
+          "p90Ms": 125,
+          "p95Ms": 163,
+          "p99Ms": 225.11,
+          "maxMs": 329,
+          "avgBytes": 358,
+          "responseCodes": {
+            "200": 5390
+          },
+          "topErrors": []
+        },
+        "05_POST_Create_Product": {
+          "samples": 5377,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 118.59,
+          "throughputRps": 45.34,
+          "avgMs": 37.98,
+          "minMs": 2,
+          "p50Ms": 8,
+          "p90Ms": 139,
+          "p95Ms": 178.2,
+          "p99Ms": 235,
+          "maxMs": 329,
+          "avgBytes": 305.8,
+          "responseCodes": {
+            "200": 5377
+          },
+          "topErrors": []
+        },
+        "06_PUT_Update_Product": {
+          "samples": 5360,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 118.32,
+          "throughputRps": 45.3,
+          "avgMs": 39.08,
+          "minMs": 2,
+          "p50Ms": 8,
+          "p90Ms": 144,
+          "p95Ms": 190,
+          "p99Ms": 243,
+          "maxMs": 327,
+          "avgBytes": 296,
+          "responseCodes": {
+            "200": 5360
+          },
+          "topErrors": []
+        },
+        "07_DELETE_Delete_Product": {
+          "samples": 5344,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 118.21,
+          "throughputRps": 45.21,
+          "avgMs": 38.63,
+          "minMs": 2,
+          "p50Ms": 8,
+          "p90Ms": 141,
+          "p95Ms": 185,
+          "p99Ms": 249,
+          "maxMs": 317,
+          "avgBytes": 296,
+          "responseCodes": {
+            "200": 5344
+          },
+          "topErrors": []
+        }
+      },
+      "timeWindows30s": [
+        {
+          "windowSec": "0-30s",
+          "samples": 3693,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 123.1,
+          "avgMs": 5.43,
+          "p95Ms": 12,
+          "maxMs": 42
+        },
+        {
+          "windowSec": "30-60s",
+          "samples": 10573,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 352.43,
+          "avgMs": 9.69,
+          "p95Ms": 22,
+          "maxMs": 78
+        },
+        {
+          "windowSec": "60-90s",
+          "samples": 14459,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 481.97,
+          "avgMs": 5.05,
+          "p95Ms": 13,
+          "maxMs": 41
+        },
+        {
+          "windowSec": "90-120s",
+          "samples": 8994,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 299.8,
+          "avgMs": 127.95,
+          "p95Ms": 231,
+          "maxMs": 330
+        }
+      ]
+    },
+    "resources": {
+      "samples": 64,
+      "durationSec": 129,
+      "cpu1CoreAvgPct": 39.72,
+      "cpu1CoreMaxPct": 73.63,
+      "cpuAllCoresAvgPct": 2.48,
+      "cpuAllCoresMaxPct": 4.6,
+      "workingSetStartMb": 56.75,
+      "workingSetEndMb": 173.64,
+      "workingSetMinMb": 50.76,
+      "workingSetMaxMb": 173.64,
+      "privateMemMaxMb": 209.59,
+      "maxThreads": 16,
+      "maxHandles": 314
+    }
+  },
+  "spike": {
+    "jtl": {
+      "file": "D:\\KTPM\\HW05\\20120397\\results\\spike\\20120397_Spike_20261122.jtl",
+      "overall": {
+        "samples": 36610,
+        "errors": 0,
+        "errorPct": 0,
+        "durationSec": 60.05,
+        "throughputRps": 609.62,
+        "avgMs": 135.62,
+        "minMs": 1,
+        "p50Ms": 80,
+        "p90Ms": 395,
+        "p95Ms": 451,
+        "p99Ms": 517,
+        "maxMs": 641,
+        "avgBytes": 726.7,
+        "responseCodes": {
+          "200": 36610
+        },
+        "topErrors": [],
+        "peakActiveThreads": 150
+      },
+      "perEndpoint": {
+        "01_POST_Admin_Login": {
+          "samples": 5294,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 60.05,
+          "throughputRps": 88.15,
+          "avgMs": 136.77,
+          "minMs": 1,
+          "p50Ms": 81,
+          "p90Ms": 400,
+          "p95Ms": 457,
+          "p99Ms": 525.07,
+          "maxMs": 641,
+          "avgBytes": 674.6,
+          "responseCodes": {
+            "200": 5294
+          },
+          "topErrors": []
+        },
+        "02_GET_Admin_Orders": {
+          "samples": 5276,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 59.92,
+          "throughputRps": 88.05,
+          "avgMs": 133.08,
+          "minMs": 1,
+          "p50Ms": 78,
+          "p90Ms": 388,
+          "p95Ms": 446,
+          "p99Ms": 510,
+          "maxMs": 641,
+          "avgBytes": 1133,
+          "responseCodes": {
+            "200": 5276
+          },
+          "topErrors": []
+        },
+        "03_GET_Admin_Users": {
+          "samples": 5256,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 59.81,
+          "throughputRps": 87.88,
+          "avgMs": 133.88,
+          "minMs": 1,
+          "p50Ms": 78,
+          "p90Ms": 391,
+          "p95Ms": 446,
+          "p99Ms": 518.45,
+          "maxMs": 623,
+          "avgBytes": 2003,
+          "responseCodes": {
+            "200": 5256
+          },
+          "topErrors": []
+        },
+        "04_GET_Categories": {
+          "samples": 5227,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 59.75,
+          "throughputRps": 87.48,
+          "avgMs": 133.37,
+          "minMs": 1,
+          "p50Ms": 78,
+          "p90Ms": 392,
+          "p95Ms": 445,
+          "p99Ms": 516.22,
+          "maxMs": 611,
+          "avgBytes": 358,
+          "responseCodes": {
+            "200": 5227
+          },
+          "topErrors": []
+        },
+        "05_POST_Create_Product": {
+          "samples": 5204,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 59.73,
+          "throughputRps": 87.13,
+          "avgMs": 136.88,
+          "minMs": 3,
+          "p50Ms": 80,
+          "p90Ms": 397,
+          "p95Ms": 457.85,
+          "p99Ms": 514.97,
+          "maxMs": 625,
+          "avgBytes": 305.8,
+          "responseCodes": {
+            "200": 5204
+          },
+          "topErrors": []
+        },
+        "06_PUT_Update_Product": {
+          "samples": 5185,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 59.62,
+          "throughputRps": 86.97,
+          "avgMs": 137.7,
+          "minMs": 3,
+          "p50Ms": 81,
+          "p90Ms": 395,
+          "p95Ms": 455.8,
+          "p99Ms": 514.16,
+          "maxMs": 613,
+          "avgBytes": 296,
+          "responseCodes": {
+            "200": 5185
+          },
+          "topErrors": []
+        },
+        "07_DELETE_Delete_Product": {
+          "samples": 5168,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 59.59,
+          "throughputRps": 86.72,
+          "avgMs": 137.72,
+          "minMs": 3,
+          "p50Ms": 81,
+          "p90Ms": 396,
+          "p95Ms": 452.65,
+          "p99Ms": 517.33,
+          "maxMs": 633,
+          "avgBytes": 296,
+          "responseCodes": {
+            "200": 5168
+          },
+          "topErrors": []
+        }
+      },
+      "timeWindows30s": [
+        {
+          "windowSec": "0-30s",
+          "samples": 23648,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 788.27,
+          "avgMs": 75.29,
+          "p95Ms": 120,
+          "maxMs": 223
+        },
+        {
+          "windowSec": "30-60s",
+          "samples": 12962,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 432.07,
+          "avgMs": 245.68,
+          "p95Ms": 499,
+          "maxMs": 641
+        }
+      ]
+    },
+    "resources": {
+      "samples": 34,
+      "durationSec": 68.5,
+      "cpu1CoreAvgPct": 50.88,
+      "cpu1CoreMaxPct": 95.73,
+      "cpuAllCoresAvgPct": 3.18,
+      "cpuAllCoresMaxPct": 5.98,
+      "workingSetStartMb": 56.78,
+      "workingSetEndMb": 136.45,
+      "workingSetMinMb": 56.78,
+      "workingSetMaxMb": 136.93,
+      "privateMemMaxMb": 160.31,
+      "maxThreads": 16,
+      "maxHandles": 364
+    }
+  },
+  "endurance": {
+    "jtl": {
+      "file": "D:\\KTPM\\HW05\\20120397\\results\\endurance\\20120397_Endurance_20261122.jtl",
+      "overall": {
+        "samples": 17496,
+        "errors": 0,
+        "errorPct": 0,
+        "durationSec": 599.09,
+        "throughputRps": 29.2,
+        "avgMs": 2.97,
+        "minMs": 0,
+        "p50Ms": 2,
+        "p90Ms": 5,
+        "p95Ms": 6,
+        "p99Ms": 10,
+        "maxMs": 77,
+        "avgBytes": 724.4,
+        "responseCodes": {
+          "200": 17496
+        },
+        "topErrors": [],
+        "peakActiveThreads": 15
+      },
+      "perEndpoint": {
+        "01_POST_Admin_Login": {
+          "samples": 2506,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 598.74,
+          "throughputRps": 4.19,
+          "avgMs": 2.02,
+          "minMs": 1,
+          "p50Ms": 2,
+          "p90Ms": 3,
+          "p95Ms": 4,
+          "p99Ms": 7,
+          "maxMs": 28,
+          "avgBytes": 674.6,
+          "responseCodes": {
+            "200": 2506
+          },
+          "topErrors": []
+        },
+        "02_GET_Admin_Orders": {
+          "samples": 2506,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 598.67,
+          "throughputRps": 4.19,
+          "avgMs": 1.82,
+          "minMs": 1,
+          "p50Ms": 2,
+          "p90Ms": 3,
+          "p95Ms": 4,
+          "p99Ms": 6,
+          "maxMs": 20,
+          "avgBytes": 1133,
+          "responseCodes": {
+            "200": 2506
+          },
+          "topErrors": []
+        },
+        "03_GET_Admin_Users": {
+          "samples": 2502,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 598.07,
+          "throughputRps": 4.18,
+          "avgMs": 1.9,
+          "minMs": 0,
+          "p50Ms": 2,
+          "p90Ms": 3,
+          "p95Ms": 4,
+          "p99Ms": 6,
+          "maxMs": 26,
+          "avgBytes": 2003,
+          "responseCodes": {
+            "200": 2502
+          },
+          "topErrors": []
+        },
+        "04_GET_Categories": {
+          "samples": 2497,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 597.76,
+          "throughputRps": 4.18,
+          "avgMs": 1.61,
+          "minMs": 0,
+          "p50Ms": 1,
+          "p90Ms": 2,
+          "p95Ms": 3.2,
+          "p99Ms": 6,
+          "maxMs": 76,
+          "avgBytes": 358,
+          "responseCodes": {
+            "200": 2497
+          },
+          "topErrors": []
+        },
+        "05_POST_Create_Product": {
+          "samples": 2496,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 597.29,
+          "throughputRps": 4.18,
+          "avgMs": 4.54,
+          "minMs": 2,
+          "p50Ms": 4,
+          "p90Ms": 6,
+          "p95Ms": 8,
+          "p99Ms": 10,
+          "maxMs": 68,
+          "avgBytes": 305.6,
+          "responseCodes": {
+            "200": 2496
+          },
+          "topErrors": []
+        },
+        "06_PUT_Update_Product": {
+          "samples": 2496,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 596.88,
+          "throughputRps": 4.18,
+          "avgMs": 4.43,
+          "minMs": 2,
+          "p50Ms": 4,
+          "p90Ms": 6,
+          "p95Ms": 8,
+          "p99Ms": 11,
+          "maxMs": 25,
+          "avgBytes": 296,
+          "responseCodes": {
+            "200": 2496
+          },
+          "topErrors": []
+        },
+        "07_DELETE_Delete_Product": {
+          "samples": 2493,
+          "errors": 0,
+          "errorPct": 0,
+          "durationSec": 596.07,
+          "throughputRps": 4.18,
+          "avgMs": 4.47,
+          "minMs": 2,
+          "p50Ms": 4,
+          "p90Ms": 6,
+          "p95Ms": 8,
+          "p99Ms": 11,
+          "maxMs": 77,
+          "avgBytes": 296,
+          "responseCodes": {
+            "200": 2493
+          },
+          "topErrors": []
+        }
+      },
+      "timeWindows30s": [
+        {
+          "windowSec": "0-30s",
+          "samples": 681,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 22.7,
+          "avgMs": 5.67,
+          "p95Ms": 13,
+          "maxMs": 28
+        },
+        {
+          "windowSec": "30-60s",
+          "samples": 861,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 28.7,
+          "avgMs": 3.15,
+          "p95Ms": 6,
+          "maxMs": 11
+        },
+        {
+          "windowSec": "60-90s",
+          "samples": 885,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 29.5,
+          "avgMs": 3.18,
+          "p95Ms": 7,
+          "maxMs": 11
+        },
+        {
+          "windowSec": "90-120s",
+          "samples": 899,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 29.97,
+          "avgMs": 3.13,
+          "p95Ms": 6,
+          "maxMs": 10
+        },
+        {
+          "windowSec": "120-150s",
+          "samples": 872,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 29.07,
+          "avgMs": 3.1,
+          "p95Ms": 6,
+          "maxMs": 9
+        },
+        {
+          "windowSec": "150-180s",
+          "samples": 902,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 30.07,
+          "avgMs": 2.92,
+          "p95Ms": 6,
+          "maxMs": 16
+        },
+        {
+          "windowSec": "180-210s",
+          "samples": 880,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 29.33,
+          "avgMs": 3.05,
+          "p95Ms": 6,
+          "maxMs": 12
+        },
+        {
+          "windowSec": "210-240s",
+          "samples": 875,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 29.17,
+          "avgMs": 3.16,
+          "p95Ms": 7,
+          "maxMs": 12
+        },
+        {
+          "windowSec": "240-270s",
+          "samples": 888,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 29.6,
+          "avgMs": 2.94,
+          "p95Ms": 6,
+          "maxMs": 13
+        },
+        {
+          "windowSec": "270-300s",
+          "samples": 888,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 29.6,
+          "avgMs": 3.13,
+          "p95Ms": 7,
+          "maxMs": 13
+        },
+        {
+          "windowSec": "300-330s",
+          "samples": 885,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 29.5,
+          "avgMs": 2.85,
+          "p95Ms": 5.8,
+          "maxMs": 10
+        },
+        {
+          "windowSec": "330-360s",
+          "samples": 869,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 28.97,
+          "avgMs": 2.74,
+          "p95Ms": 5,
+          "maxMs": 9
+        },
+        {
+          "windowSec": "360-390s",
+          "samples": 882,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 29.4,
+          "avgMs": 2.92,
+          "p95Ms": 6,
+          "maxMs": 14
+        },
+        {
+          "windowSec": "390-420s",
+          "samples": 869,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 28.97,
+          "avgMs": 2.91,
+          "p95Ms": 6,
+          "maxMs": 10
+        },
+        {
+          "windowSec": "420-450s",
+          "samples": 888,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 29.6,
+          "avgMs": 2.47,
+          "p95Ms": 5,
+          "maxMs": 10
+        },
+        {
+          "windowSec": "450-480s",
+          "samples": 905,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 30.17,
+          "avgMs": 2.45,
+          "p95Ms": 5,
+          "maxMs": 7
+        },
+        {
+          "windowSec": "480-510s",
+          "samples": 897,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 29.9,
+          "avgMs": 2.46,
+          "p95Ms": 5,
+          "maxMs": 9
+        },
+        {
+          "windowSec": "510-540s",
+          "samples": 920,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 30.67,
+          "avgMs": 2.41,
+          "p95Ms": 5,
+          "maxMs": 10
+        },
+        {
+          "windowSec": "540-570s",
+          "samples": 902,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 30.07,
+          "avgMs": 2.9,
+          "p95Ms": 5,
+          "maxMs": 77
+        },
+        {
+          "windowSec": "570-600s",
+          "samples": 848,
+          "errors": 0,
+          "errorPct": 0,
+          "rps": 28.27,
+          "avgMs": 2.47,
+          "p95Ms": 5,
+          "maxMs": 10
+        }
+      ]
+    },
+    "resources": {
+      "samples": 302,
+      "durationSec": 607.6,
+      "cpu1CoreAvgPct": 5.51,
+      "cpu1CoreMaxPct": 12.46,
+      "cpuAllCoresAvgPct": 0.34,
+      "cpuAllCoresMaxPct": 0.78,
+      "workingSetStartMb": 57.04,
+      "workingSetEndMb": 82.2,
+      "workingSetMinMb": 51.07,
+      "workingSetMaxMb": 82.2,
+      "privateMemMaxMb": 103.05,
+      "maxThreads": 16,
+      "maxHandles": 229
+    }
+  }
+}
