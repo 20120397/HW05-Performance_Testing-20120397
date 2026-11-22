@@ -25,10 +25,17 @@ function parseResourceCsv(csvPath) {
   });
 }
 
-async function renderHtmlPng(page, html, outPath, width = 1000, height = 560) {
-  await page.setViewportSize({ width, height });
+async function renderHtmlPng(browser, html, outPath, width = 1000, height = 560) {
+  const page = await browser.newPage({ viewport: { width, height } });
+  const errors = [];
+  page.on('pageerror', (err) => errors.push(err.message));
   await page.setContent(html, { waitUntil: 'load' });
+  if (errors.length > 0) {
+    await page.close();
+    throw new Error(`Page JS error while rendering ${outPath}: ${errors.join('; ')}`);
+  }
   await page.screenshot({ path: outPath, fullPage: false });
+  await page.close();
   console.log('Generated chart:', outPath);
 }
 
@@ -56,6 +63,7 @@ function buildResourceChartHtml(title, subtitle, rows) {
   <canvas id="c" width="920" height="400"></canvas>
 </div>
 <script>
+(() => {
 const rows = ${payload};
 const canvas = document.getElementById('c');
 const ctx = canvas.getContext('2d');
@@ -114,6 +122,7 @@ if (rows.length > 0) {
   });
   ctx.stroke();
 }
+})();
 </script>
 </body></html>`;
 }
@@ -155,6 +164,7 @@ function buildComparisonChartHtml(metrics) {
   </tbody>
 </table>
 <script>
+(() => {
 const items = ${JSON.stringify(items)};
 function drawBars(id, series, colors) {
   const c = document.getElementById(id);
@@ -188,6 +198,7 @@ function drawBars(id, series, colors) {
 }
 drawBars('c1', ['rps'], ['#2563eb']);
 drawBars('c2', ['avg', 'p95'], ['#10b981', '#ef4444']);
+})();
 </script>
 </body></html>`;
 }
@@ -301,7 +312,6 @@ function buildCptFlowchartHtml() {
 
 async function main() {
   const browser = await pw.chromium.launch({ headless: true });
-  const page = await browser.newPage();
 
   // 1. Resource usage charts per scenario
   const scenarios = [
@@ -314,25 +324,25 @@ async function main() {
     const csvPath = path.join(EVIDENCE, `resource-usage-${sc}.csv`);
     const rows = parseResourceCsv(csvPath);
     if (rows.length > 0) {
-      await renderHtmlPng(page, buildResourceChartHtml(title, sub, rows), path.join(EVIDENCE, `chart-${sc}-resources.png`), 980, 520);
+      await renderHtmlPng(browser, buildResourceChartHtml(title, sub, rows), path.join(EVIDENCE, `chart-${sc}-resources.png`), 980, 520);
     }
   }
 
   // 2. Comparison chart from ground-truth-metrics.json
   if (fs.existsSync(DATA_PATH)) {
     const metrics = JSON.parse(fs.readFileSync(DATA_PATH, 'utf8'));
-    await renderHtmlPng(page, buildComparisonChartHtml(metrics), path.join(EVIDENCE, 'chart-scenarios-comparison.png'), 980, 540);
+    await renderHtmlPng(browser, buildComparisonChartHtml(metrics), path.join(EVIDENCE, 'chart-scenarios-comparison.png'), 980, 540);
   }
 
   // 3. Hardware Spec PNG
   const hwPath = path.join(EVIDENCE, 'hardware-spec.txt');
   if (fs.existsSync(hwPath)) {
     const hwText = fs.readFileSync(hwPath, 'utf8');
-    await renderHtmlPng(page, buildHardwareSpecHtml(hwText), path.join(EVIDENCE, 'hardware-spec-table.png'), 900, 460);
+    await renderHtmlPng(browser, buildHardwareSpecHtml(hwText), path.join(EVIDENCE, 'hardware-spec-table.png'), 900, 460);
   }
 
   // 4. Task 3 CPT Flowchart PNG
-  await renderHtmlPng(page, buildCptFlowchartHtml(), path.join(EVIDENCE, 'cpt-pipeline-flowchart.png'), 960, 390);
+  await renderHtmlPng(browser, buildCptFlowchartHtml(), path.join(EVIDENCE, 'cpt-pipeline-flowchart.png'), 960, 390);
 
   await browser.close();
 }
