@@ -1,18 +1,16 @@
 # Báo Cáo Kiểm Thử Hiệu Năng Hệ Thống EShop (HW05 — Performance Testing)
 
-- **Sinh viên thực hiện:** `20120397` (`quangtung1112002@gmail.com`)
-- **Môn học:** Kiểm thử Phần mềm — HW05 (`Bloom-AI G9.2 Apply, G9.3 Analyse, G9.4 Collaborate, G9.6 Disrupt`)
+- **Sinh viên thực hiện:** `20120397` 
+- **Môn học:** Kiểm thử Phần mềm — HW05 
 - **Ngày thực nghiệm:** `2026-11-22`
-- **Hệ thống kiểm thử (SUT):** `eshop-sut/backend` (`Express + SQLite3`, `http://localhost:3000`)
+- **Hệ thống kiểm thử (SUT):** `eshop-sut/backend`
 - **Công cụ sử dụng:** Apache JMeter `5.6.3`, Node.js `v24.19.0`, OpenJDK `25.0.4.1`, PowerShell Resource Monitor, Antigravity Assistant (Gemini)
 - **Kho lưu trữ GitHub:** `https://github.com/20120397/HW05-Performance_Testing-20120397.git`
-- **Video Demo (Unlisted YouTube):** `[Cập nhật link YouTube sau khi quay theo DEMO_VIDEO_GUIDE.md]`
+- **Video Demo (Unlisted YouTube):**
 
 ---
 
-## 1. Phạm Vi & Lựa Chọn Workflow Không Trùng Lặp (Mục 5)
-
-Để **không trùng lặp** với thành viên cùng nhóm (đã chọn luồng người mua hàng: `Login -> Search products -> Product detail -> Add to cart -> Checkout không coupon` trên `POST /api/login`, `GET /api/products?search=`, `GET /api/products/:id`, `POST /api/cart`, `POST /api/checkout`), bài làm này chọn luồng quản trị viên đầu cuối (**End-to-End Web Admin Dashboard & Product CRUD**):
+## 1. Phạm Vi & Lựa Chọn Workflow Không Trùng Lặp
 
 > **Workflow đã chọn:**  
 > `Admin Login` ➔ `View Admin Orders` ➔ `View Admin Users` ➔ `View Categories` ➔ `Create Product` ➔ `Update Product` ➔ `Delete Product`
@@ -31,9 +29,8 @@
 
 ---
 
-## 2. Báo Cáo Phần Cứng & Môi Trường Thực Nghiệm (Mục 6 & 11)
+## 2. Báo Cáo Phần Cứng & Môi Trường Thực Nghiệm
 
-Thông số phần cứng máy thực nghiệm được trích xuất trực tiếp từ hệ điều hành Windows (`evidence/hardware-spec.txt`), bảo đảm **`Hostname = Tung`** trùng khớp với các bài HW trước:
 
 | Thành Phần | Thông Số Thực Tế |
 | :--- | :--- |
@@ -44,9 +41,7 @@ Thông số phần cứng máy thực nghiệm được trích xuất trực ti�
 | **Runtime SUT** | Node.js `v24.19.0`, Express + `sqlite3` (`D:\KTPM\eshop-sut\backend\server.js`, cổng `3000`) |
 | **JMeter & Java** | Apache JMeter `5.6.3` trên OpenJDK `25.0.4.1 LTS` (`-Xms1g -Xmx1g`) |
 
-![Hardware Specification Table](./evidence/hardware-spec-table.png)
-
-> *Ghi chú minh chứng thủ công:* Ảnh chụp `dxdiag` gốc (`evidence/dxdiag-tung.png`) và ảnh chụp màn hình JMeter + Task Manager cùng khung hình cho từng kịch bản sẽ được bổ sung khi quay video demo theo `DEMO_VIDEO_GUIDE.md`.
+![Hardware Specification Table](./evidence/dxdiag-tung.png)
 
 ---
 
@@ -75,7 +70,7 @@ Bốn kịch bản kiểm thử sử dụng chung một luồng nghiệp vụ 7 
 | **4** | Không tính đến lỗi `login_attempts + 2` khi reset lockout | Prompt ban đầu không đính kèm logic `server.js:54` | Kiểm chứng thực tế (`verify-lockout-and-bugs.js`) thấy hệ thống khóa sau **2 lần sai** (`BUG-AUTH-01`), từ đó xây dựng quy trình reset sạch giữa các lần chạy. |
 | **5** | Dùng cấu hình Log4j2 mặc định của JMeter khi chạy CLI không giao diện | Giới hạn môi trường Windows headless/sandbox chặn ghi Registry `GuiPackage` | Tạo `scripts/log4j2-cli.xml` loại bỏ `GuiLogEvent` và cấu hình `run-scenario.ps1` chạy ổn định trong non-GUI mode. |
 
-### 3.3. Quy Trình Reset Account Lockout Giữa Các Lượt Chạy (Mục 6 — Task 1)
+### 3.3. Quy Trình Reset Account Lockout Giữa Các Lượt Chạy
 
 Khi kiểm thử `POST /api/login` (`FR-02`), hàm xử lý tại `server.js:54-62` cộng `login_attempts + 2` và khóa tài khoản trong `180,000 ms` (3 phút) ngay khi `newAttempts >= 3`. Để bảo đảm tính lặp lại giữa các lượt chạy Load, Stress, Spike và Endurance:
 1. **Cách 1 (Được tự động hóa trong `scripts/run-scenario.ps1`):** Dừng tiến trình `node server.js` của lượt trước và khởi động lại `node server.js` mới. Hàm `initDatabase()` trong `database.js` tự động chạy `DROP TABLE` / `CREATE TABLE` và seed lại trạng thái `login_attempts = 0, locked_until = NULL`, sau đó `scripts/seed-sut.js` tạo lại 9 tài khoản admin phụ và 5 đơn hàng.
@@ -86,8 +81,6 @@ Khi kiểm thử `POST /api/login` (`FR-02`), hàm xử lý tại `server.js:54-
    (Hoặc đợi hết 180 giây để điều kiện `new Date() < new Date(user.locked_until)` hết hiệu lực).
 
 ### 3.4. Kết Quả Thực Thi 3 Kịch Bản Chính (Load, Stress, Spike)
-
-Toàn bộ số liệu dưới đây được trích xuất trực tiếp từ các file `.jtl` gốc và `evidence/resource-usage-*.csv` thông qua `Agent-Skill/scripts/analyze_jtl.js`:
 
 | Chỉ Số Tổng Hợp | Load Test (`20 VU / 120s`) | Stress Test (`100 VU / 120s`) | Spike Test (`150 VU / 5s / 60s`) |
 | :--- | :---: | :---: | :---: |
@@ -136,7 +129,7 @@ Kịch bản Endurance (`20120397_Endurance_20261122.jmx`) chạy liên tục **
 
 ![Endurance Resource Chart](./evidence/chart-endurance-resources.png)
 
-#### Kết Luận Ngưỡng Chịu Đựng Phần Cứng Trên Máy `Tung` (AMD Ryzen 7 4800H / 16 GB RAM)
+#### Kết Luận Ngưỡng Chịu Đựng Phần Cứng (AMD Ryzen 7 4800H / 16 GB RAM)
 - **Ngưỡng vận hành bền vững dài hạn đã kiểm chứng (Soak-verified safe baseline):** **`29.20 – 36.69 RPS`** (`15–20 VU`), `p95 <= 6 ms`, CPU 1-core `< 14%`, RAM `<= 87 MB`, ổn định tuyệt đối qua 10 phút.
 - **Ngưỡng chịu tải tối đa trước khi suy giảm (Max Stable RPS Ceiling):** Khoảng **`350 – 400 RPS`** (tương ứng `~60–75 VU` với think time thực tế `200–500 ms`), giữ `p95 < 50 ms` và CPU 1-core `< 60%`.
 - **Điểm bão hòa / Vượt ngưỡng (Breaking Point & Memory Ceiling):** Đỉnh tức thời đạt `481.97 RPS` (Stress) và `788.27 RPS` (Spike) nhưng không thể duy trì quá 30–90 giây; tại `100–150 VU`, CPU đơn nhân chạm trần **`95.73%`**, `p95` vọt lên **`231 – 499 ms`**, và RAM của riêng tiến trình Node.js tăng gấp `3–3.7x` lên **`173.64 MB` Working Set (`209.59 MB` Private)**.
@@ -151,8 +144,6 @@ Khi cung cấp các thông số tóm tắt ban đầu (Load, Stress, Spike và C
 
 ### 4.2. Bảng Truy Tìm Lỗi Diễn Giải Số Liệu (Misinterpretation Hunt)
 
-Đối chiếu từng phát biểu của AI với kết quả tính toán chính xác từ `Agent-Skill/scripts/analyze_jtl.js` trên raw `.jtl` và `evidence/resource-usage-*.csv`:
-
 | STT | Nhận Định Sai / Lệch Của AI | Giá Trị Đúng Từ Raw `.jtl` / Resource Log | Giải Thích Nguyên Nhân Sai Lệch |
 | :---: | :--- | :--- | :--- |
 | **1** | *"Stress Test (`100 VU`) vẫn phản hồi rất nhanh với trung vị `p50 = 7 ms`, chưa có dấu hiệu nghẽn."* | Trong `20120397_Stress_20261122.jtl`, dù `p50 = 7 ms`, nhưng **`p95 = 176 ms`**, **`p99 = 237 ms`**. Đặc biệt tại cửa sổ **`90–120s`**, `RPS` tụt từ `481.97` xuống `299.80`, `Avg` vọt lên `127.95 ms` và **`p95 = 231 ms`** (`Max = 330 ms`). | AI dùng trung vị (`p50`) và trung bình cộng gộp toàn phiên để đánh giá hiệu năng, bỏ qua đuôi phân phối (`p95`/`p99`) và xu hướng suy thoái theo chuỗi thời gian. |
@@ -162,8 +153,6 @@ Khi cung cấp các thông số tóm tắt ban đầu (Load, Stress, Spike và C
 | **5** | *"Thao tác `POST /api/products` chậm hơn `GET /api/admin/orders` gấp 10 lần nên là nút thắt duy nhất."* | Trong Load (`20 VU`): `POST /api/products` `Avg = 4.39 ms` (`p95 = 7 ms`) so với `GET /api/admin/orders` `Avg = 2.00 ms` (`p95 = 4 ms`) — chỉ chậm hơn **~2.2 lần**. Trong Spike (`150 VU`), mọi GET và POST đều vọt lên `133–138 ms` (`p95 = 445–458 ms`). | AI phóng đại chi phí ghi SQLite trong kịch bản tải thấp và không nhận ra dưới tải Spike, nút thắt chủ yếu là xếp hàng trên Event Loop CPU (`95.73%`) ảnh hưởng đồng đều tới cả `GET` lẫn `POST`. |
 
 ### 4.3. Đánh Giá Tính Khả Thi Của Các Đề Xuất Tối Ưu Hóa (Feasible vs Hallucinated)
-
-Đối chiếu 6 giải pháp do AI đề xuất với mã nguồn thực tế trong `D:\KTPM\eshop-sut\backend\server.js` và `database.js`:
 
 | STT | Đề Xuất Tối Ưu Hóa Của AI | Phân Loại | Lý Giải Dựa Trên Mã Nguồn Thực Tế |
 | :---: | :--- | :---: | :--- |
@@ -214,8 +203,6 @@ flowchart LR
 ---
 
 ## 6. Phê Bình AI (AI Critique — 273 Từ, Mục 10)
-
-> Chi tiết xem thêm tại tệp riêng [reports/ai-critique.md](./reports/ai-critique.md) và [reports/ai-critique.pdf](./reports/ai-critique.pdf).
 
 Trong quá trình kiểm thử hiệu năng hệ thống EShop, AI hỗ trợ nhanh việc dựng bốn kịch bản JMeter, tạo dữ liệu CSV và viết script phân tích log, nhưng vẫn mắc nhiều sai sót ở cả khâu thiết kế lẫn diễn giải kết quả. Khi tạo test plan, AI mặc định dùng một tài khoản admin, bỏ qua lỗi `login_attempts + 2` làm khóa tài khoản sau hai lần sai, và chỉ kiểm tra mã HTTP 200 nên bỏ lọt lỗi cập nhật hoặc xóa ID không tồn tại vẫn trả về thành công giả. Lúc phân tích kết quả, AI nhìn trung vị `p50 = 7 ms` ở Stress Test mà kết luận hệ thống còn dư tải, bỏ sót cú sụp đổ thông lượng xuống 299.80 RPS và độ trễ `p95 = 231 ms` tại cửa sổ 90–120 giây; đồng thời hiểu nhầm CPU tổng 5.98% trên 16 luồng là nhẹ trong khi tiến trình `node.exe` đã bão hòa 95.73% trên một nhân ở Spike Test. Nghiêm trọng hơn, AI bịa đặt đề xuất dựng connection pool kiểu PgBouncer, giảm `bcrypt` rounds và thêm Redis Cluster cho `/api/categories`, dù mã nguồn chỉ dùng SQLite nhúng và so sánh mật khẩu dạng văn bản thuần. Nguyên nhân là AI suy đoán theo khuôn mẫu phổ biến thay vì kiểm tra mã nguồn `server.js`, `database.js` và chuỗi thời gian trong file `.jtl` thô. Nguyên tắc tôi rút ra là: AI chỉ giúp khởi tạo nhanh, còn mọi số liệu và khuyến nghị tối ưu đều phải được con người đối chiếu trực tiếp với dữ liệu gốc và mã nguồn thật.
 
